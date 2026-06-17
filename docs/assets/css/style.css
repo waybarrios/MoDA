@@ -111,10 +111,10 @@ strong{ font-weight:700; color:var(--ink); }
 
 .institutions{ display:flex; align-items:center; justify-content:center; gap:30px; flex-wrap:wrap; margin:16px 0 40px; }
 .inst{ display:inline-flex; align-items:center; gap:13px; }
-.inst--dart .inst__pine{ height:58px; width:auto; display:block; }
-.inst__word{ height:29px; width:auto; }
-.inst__kaust{ height:58px; width:auto; }
-.inst-sep{ width:1px; height:50px; background:var(--line-2); }
+.inst--dart .inst__pine{ height:44px; width:auto; display:block; }
+.inst__word{ height:21px; width:auto; }
+.inst__kaust{ height:66px; width:auto; }
+.inst-sep{ width:1px; height:52px; background:var(--line-2); }
 
 .cta{ display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-bottom:54px; }
 .btn{
@@ -133,7 +133,7 @@ strong{ font-weight:700; color:var(--ink); }
   padding:22px; box-shadow:0 26px 50px -34px rgba(20,20,20,.4);
 }
 .modulator__head{
-  display:flex; justify-content:space-between; align-items:center;
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:4px 12px;
   font-family:var(--mono); font-size:11.5px; color:var(--muted); margin-bottom:16px;
 }
 .modulator__tag{ display:inline-flex; align-items:center; gap:8px; font-weight:500; }
@@ -198,7 +198,7 @@ strong{ font-weight:700; color:var(--ink); }
   font-family:var(--mono); font-size:10px; letter-spacing:.04em; color:var(--faint);
 }
 .modulator__axis{
-  display:flex; justify-content:space-between; align-items:center; margin-top:12px;
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px 14px; margin-top:12px;
   font-family:var(--mono); font-size:11px; color:var(--faint);
 }
 .modulator__legend{ display:inline-flex; align-items:center; gap:7px; }
@@ -405,6 +405,21 @@ pre#bibtex code{ font-family:var(--mono); font-size:13.5px; line-height:1.7; col
   .headline{ grid-template-columns:1fr 1fr; }
   .prose p{ text-align:left; }
   .btn{ padding:10px 16px; font-size:14px; }
+  /* modulator: tighter on phones, drop the duplicated header equation */
+  .modulator{ padding:16px 14px; }
+  .modulator__eq{ display:none; }
+  .modulator__head{ font-size:11px; }
+  .modulator__caption{ font-size:9px; }
+  .modulator__matrix{ margin-right:10px; }
+  .modulator__ylab{ font-size:9px; }
+  /* institutions: scale down so the Dartmouth wordmark fits, drop the
+     orphaned vertical separator once the logos stack */
+  .institutions{ gap:16px 20px; }
+  .inst-sep{ display:none; }
+  .inst--dart .inst__pine{ height:36px; }
+  .inst__word{ height:17px; }
+  .inst__kaust{ height:54px; }
+  .inst{ gap:10px; }
 }
 
 /* ============================================================ MOTION SAFETY */
