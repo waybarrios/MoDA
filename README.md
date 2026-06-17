@@ -2,7 +2,7 @@
 
 Official repository for our ICML 2026 paper **"MoDA: Modulation Adapter for Fine-Grained Visual Understanding in Instructional MLLMs."**
 
-🌐 **Project page:** https://waybarrios.github.io/MoDA/ &nbsp;·&nbsp; 📄 **Paper:** https://icml.cc/virtual/2026/poster/62389 &nbsp;·&nbsp; 📝 **arXiv:** https://arxiv.org/abs/2506.01850
+🌐 **Project page:** https://waybarrios.com/MoDA/ &nbsp;·&nbsp; 📄 **Paper:** https://icml.cc/virtual/2026/poster/62389 &nbsp;·&nbsp; 📝 **arXiv:** https://arxiv.org/abs/2506.01850
 
 MoDA (**Mo**dulation **A**dapter) is a lightweight module that improves fine-grained visual grounding in Multimodal Large Language Models (MLLMs) through **instruction-guided, channel-wise modulation** of pre-aligned visual features. Unlike token-level methods such as Q-Former that perform additive feature selection, MoDA operates at the channel level via **multiplicative (Hadamard) modulation** on already-aligned features, giving fine-grained control over which embedding dimensions are relevant for each instruction — without modifying the underlying MLLM architecture and without additional supervision.
 
