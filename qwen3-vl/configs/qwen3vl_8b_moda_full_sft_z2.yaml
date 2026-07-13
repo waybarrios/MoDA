@@ -1,0 +1,43 @@
+### model
+model_name_or_path: qwen3_vl_8b_moda
+image_max_pixels: 262144
+video_max_pixels: 16384
+trust_remote_code: true
+
+### method
+stage: sft
+do_train: true
+finetuning_type: full
+freeze_vision_tower: true
+freeze_multi_modal_projector: true
+freeze_language_model: false
+deepspeed: configs/ds_z2_config.json
+
+### dataset
+dataset_dir: data
+dataset: llava_mix665k
+template: qwen3_vl_nothink
+cutoff_len: 4096
+preprocessing_num_workers: 16
+dataloader_num_workers: 4
+tokenized_path: data/tokenized_cache_8b
+
+### output
+output_dir: checkpoints/qwen3vl_8b_moda_full_sft_z2
+logging_steps: 10
+save_steps: 1000
+save_total_limit: 2
+plot_loss: true
+overwrite_output_dir: true
+save_only_model: false
+report_to: none
+
+### train
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 32
+learning_rate: 1.0e-5
+num_train_epochs: 1.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.03
+bf16: true
+ddp_timeout: 180000000
