@@ -256,11 +256,13 @@ The dataset metadata is defined in `data/dataset_info.json` under the key `llava
 
 ```bash
 # For 2B model
-python scripts/prepare_model_dir.py --model-size 2b
+python scripts/prepare_model_dir.py --model-size 2b --num-layers 1
 
 # For 8B model
-python scripts/prepare_model_dir.py --model-size 8b
+python scripts/prepare_model_dir.py --model-size 8b --num-layers 1
 ```
+
+> **Note:** the paper configuration uses a single MoDA decoder layer (`--num-layers 1`). The script's built-in default is 2, so pass the flag explicitly when preparing the model directory manually; `scripts/train.sh` and `scripts/train_8b.sh` already do this.
 
 The script finds the base model snapshot under `$HF_HOME/hub/models--Qwen--Qwen3-VL-*/snapshots/` (or `$HF_HOME/models--Qwen--Qwen3-VL-*/snapshots/`), then:
 1. Copies `config.json` and adds `auto_map` (so `trust_remote_code=True` loads the MoDA classes) + MoDA hyperparameters scaled for the chosen model size
@@ -448,7 +450,7 @@ This scans each `output_path` for `*_results.json` files and prints a base-vs-Mo
 2. Delete and regenerate the model directory:
    ```bash
    rm -rf qwen3_vl_2b_moda/
-   python scripts/prepare_model_dir.py --model-size 2b
+   python scripts/prepare_model_dir.py --model-size 2b --num-layers 1
    ```
 3. Double-check the training config (`configs/qwen3vl_moda_full_sft.yaml` or the 8B equivalents) has `model_name_or_path` pointing at that same directory and `trust_remote_code: true` set.
 
