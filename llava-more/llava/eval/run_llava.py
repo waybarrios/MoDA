@@ -113,7 +113,6 @@ def eval_model(args):
         .unsqueeze(0)
         .cuda()
     )
-    import ipdb;ipdb.set_trace()
     with torch.inference_mode():
         output_ids = model.generate(
             input_ids,
@@ -127,7 +126,6 @@ def eval_model(args):
             use_cache=True,
         )
 
-    import ipdb;ipdb.set_trace()
     outputs = tokenizer.batch_decode(output_ids, skip_special_tokens=True)[0].strip()
     print(outputs)
 
