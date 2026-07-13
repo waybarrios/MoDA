@@ -164,7 +164,7 @@ class LLaVATrainer(Trainer):
             decay_parameters = [name for name in decay_parameters if "bias" not in name]
             if self.args.mm_projector_lr is not None:
                 projector_parameters = [name for name, _ in opt_model.named_parameters() if "mm_projector" in name]
-                masking_parameters = [name for name, _ in opt_model.named_parameters() if "masking" in name]
+                moda_parameters = [name for name, _ in opt_model.named_parameters() if "moda" in name]
                 optimizer_grouped_parameters = [
                     {
                         "params": [
@@ -194,9 +194,9 @@ class LLaVATrainer(Trainer):
                     },
 
                      {
-                        # New group for masking parameters
+                        # New group for MoDA parameters
                         "params": [
-                            p for n, p in opt_model.named_parameters() if (n in masking_parameters and p.requires_grad)
+                            p for n, p in opt_model.named_parameters() if (n in moda_parameters and p.requires_grad)
                         ],
                         "weight_decay": 0.0,  # Adjust weight decay if needed (or add a separate lr)
                    

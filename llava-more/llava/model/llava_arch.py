@@ -20,11 +20,17 @@ import torch.nn as nn
 
 from .multimodal_encoder.builder import build_vision_tower
 from .multimodal_projector.builder import build_vision_projector
-from .multimodal_masking.builder import  build_vision_masking
+from .multimodal_moda.builder import build_moda
 
 from llava.constants import IGNORE_INDEX, IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_PATCH_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN
 
 from llava.mm_utils import get_anyres_image_grid_shape
+
+
+def _remap_legacy_moda_keys(state_dict, prefix, *args):
+    """Remap legacy 'masking.*' checkpoint keys to the new 'moda.*' naming."""
+    for key in [k for k in list(state_dict.keys()) if "masking." in k]:
+        state_dict[key.replace("masking.", "moda.")] = state_dict.pop(key)
 
 
 class LlavaMetaModel:
@@ -35,11 +41,13 @@ class LlavaMetaModel:
         if hasattr(config, "mm_vision_tower"):
             self.vision_tower = build_vision_tower(config, delay_load=True)
             self.mm_projector = build_vision_projector(config)
-            self.masking = build_vision_masking() #adding masking 
+            self.moda = build_moda()  # MoDA: instruction-guided modulation adapter
             if 'unpad' in getattr(config, 'mm_patch_merge_type', ''):
                 self.image_newline = nn.Parameter(
                     torch.empty(config.hidden_size, dtype=self.dtype)
                 )
+
+        self._register_load_state_dict_pre_hook(_remap_legacy_moda_keys)
 
     def get_vision_tower(self):
         vision_tower = getattr(self, 'vision_tower', None)
@@ -101,8 +109,8 @@ class LlavaMetaModel:
 
             self.mm_projector.load_state_dict(get_w(mm_projector_weights, 'mm_projector'))
         
-        if model_args.masking:
-             self.masking = build_vision_masking()
+        if getattr(model_args, "moda", False) or getattr(model_args, "masking", False):
+            self.moda = build_moda()
 
 
 def unpad_image(tensor, original_size):
@@ -196,7 +204,7 @@ class LlavaMetaForCausalLM(ABC):
 
         image_features = self.get_model().get_vision_tower()(images) # batch, 576 / 729, vision_model hidden_size
         image_features = self.get_model().mm_projector(image_features)
-        image_features = self.get_model().masking(image_features,input_embeds,labels=None) #masking aligned features.
+        image_features = self.get_model().moda(image_features, input_embeds, labels=None)  # MoDA: modulate aligned features
         self.input_embeds_xattn = input_embeds 
 
 

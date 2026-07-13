@@ -7,7 +7,7 @@ def build_vision_tower(vision_tower_cfg, **kwargs):
     is_absolute_path_exists = os.path.exists(vision_tower)
     use_s2 = getattr(vision_tower_cfg, 's2', False)
     use_siglip = getattr(vision_tower_cfg, 'siglip', False)
-    use_mask = getattr(vision_tower_cfg, 'masking', False) 
+    use_mask = getattr(vision_tower_cfg, 'moda', False) or getattr(vision_tower_cfg, 'masking', False)
 
     if is_absolute_path_exists or vision_tower.startswith("openai") or vision_tower.startswith("laion") or vision_tower.startswith("timm") or vision_tower.startswith("google") or "ShareGPT4V" in vision_tower:
         if use_s2 and use_siglip:

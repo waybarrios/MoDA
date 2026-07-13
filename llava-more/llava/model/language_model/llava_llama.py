@@ -118,7 +118,7 @@ class LlavaLlamaForCausalLM(LlamaForCausalLM, LlavaMetaForCausalLM):
         mask_loss = 0.0
         ''' 
         if labels is not None:
-            mask_loss = self.model.masking.get_sparsity_loss()  # e.g. from EncoderMask
+            mask_loss = self.model.moda.get_sparsity_loss()  # e.g. from MoDAAdapter
             # DeepSpeed logging (rank 0 only)
             if dist.get_rank() == 0:
                 logger.info(f"return_dict:{return_dict}")

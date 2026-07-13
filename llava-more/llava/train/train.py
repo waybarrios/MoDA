@@ -68,7 +68,8 @@ class ModelArguments:
     s2: bool = field(default=False)
     s2_scales: Optional[str] = field(default=None)
     siglip: bool = field(default=False)
-    masking: bool = field(default=False)
+    moda: bool = field(default=False, metadata={"help": "Enable the MoDA modulation adapter."})
+    masking: bool = field(default=False, metadata={"help": "Deprecated alias for --moda."})
 
 @dataclass
 class DataArguments:
@@ -1011,6 +1012,8 @@ def train(attn_implementation=None):
     parser = transformers.HfArgumentParser(
         (ModelArguments, DataArguments, TrainingArguments))
     model_args, data_args, training_args = parser.parse_args_into_dataclasses()
+    if model_args.masking and not model_args.moda:
+        model_args.moda = True
     local_rank = training_args.local_rank
     compute_dtype = (torch.float16 if training_args.fp16 else (torch.bfloat16 if training_args.bf16 else torch.float32))
 
