@@ -16,7 +16,7 @@ if [ -n "${CONDA_ENV}" ]; then
     export PATH="${CONDA_ENV}/bin:$PATH"
 fi
 export PYTHONPATH="${PROJECT_DIR}:${PYTHONPATH}"
-export HF_HOME="${HF_HOME:-~/.cache/huggingface}"
+export HF_HOME="${HF_HOME:-$HOME/.cache/huggingface}"
 
 cd "${PROJECT_DIR}"
 

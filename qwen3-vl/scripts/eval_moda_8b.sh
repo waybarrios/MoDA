@@ -8,7 +8,7 @@
 set -euo pipefail
 
 PROJECT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-export HF_HOME="${HF_HOME:-~/.cache/huggingface}"
+export HF_HOME="${HF_HOME:-$HOME/.cache/huggingface}"
 export CUDA_VISIBLE_DEVICES=${1:-5}
 
 # Default to ZeRO-2 checkpoint; override with second argument
