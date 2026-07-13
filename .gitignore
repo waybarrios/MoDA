@@ -1,0 +1,21 @@
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+*.egg-info/
+build/
+dist/
+
+# experiment artifacts
+checkpoints/
+wandb/
+eval_results/
+logs/
+*.log
+
+# large binaries
+*.pt
+*.bin
+*.safetensors
+
+.DS_Store
