@@ -134,7 +134,7 @@ def eval_model(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model-path", type=str, default="/gpudata3/Wayner/LLaVA-MORE-l1-linear-xattn/checkpoints/masking_linear_xattn_siglip_s2_llava")
+    parser.add_argument("--model-path", type=str, default="./checkpoints/llava_more-siglip-s2-moda")
     parser.add_argument("--model-base", type=str, default=None)
     parser.add_argument("--image-file", type=str, default='https://cdn.pixabay.com/photo/2014/09/08/17/08/not-439331_1280.jpg')
     parser.add_argument("--query", type=str, default="Describe this image.")

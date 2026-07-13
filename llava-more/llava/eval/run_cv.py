@@ -232,8 +232,8 @@ def eval_model_on_cvbench(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model-path", type=str, 
-                       default="/gpudata3/Wayner/LLaVA-MORE-l1-linear-xattn/checkpoints/masking_l1_xtann_layer1_llava")
+    parser.add_argument("--model-path", type=str, required=True,
+                       help="Path to the trained model checkpoint (e.g. ./checkpoints/llava_more-siglip-s2-moda)")
     parser.add_argument("--model-base", type=str, default=None)
     parser.add_argument("--conv-mode", type=str, default='llama_3_1')
     parser.add_argument("--temperature", type=float, default=0.1)

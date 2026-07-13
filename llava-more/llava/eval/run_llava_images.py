@@ -142,7 +142,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--image-folder",
         type=str,
-        default="/gpudata3/Wayner/images_demo",
+        default="./images_demo",
         help="Carpeta donde se encuentran las imágenes (formato jpg)",
     )
     parser.add_argument("--query", type=str, default="Describe this image.")

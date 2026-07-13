@@ -4,7 +4,6 @@ source activate more
 cd local/path
 
 export PYTHONPATH=.
-export WANDB_ENTITYproject_entity
 export WANDB_PROJECT=project_name
 export WANDB_MODE=offline
 export TOKENIZER_PATH=meta-llama/Meta-Llama-3-8B-Instruct

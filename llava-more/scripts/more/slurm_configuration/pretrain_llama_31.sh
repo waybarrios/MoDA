@@ -20,7 +20,6 @@ source activate more
 cd /your/path
 
 export PYTHONPATH=.
-export WANDB_ENTITYproject_entity
 export WANDB_PROJECT=project_name
 export WANDB_MODE=offline
 export TOKENIZER_PATH=aimagelab/LLaVA_MORE-llama_3_1-8B-finetuning
