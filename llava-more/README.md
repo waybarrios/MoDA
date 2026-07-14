@@ -27,6 +27,31 @@ This directory is a fork of [aimagelab/LLaVA-MORE](https://github.com/aimagelab/
 
 This fork inherits its environment, data conventions, and most of its training/eval tooling from upstream [aimagelab/LLaVA-MORE](https://github.com/aimagelab/LLaVA-MORE); all credit for the base pipeline goes to that project. The Apache-2.0 license under which it was released is preserved in `LICENSE`.
 
+## Pretrained checkpoints
+
+Both LLaVA-MoRE 8B + MoDA variants from the paper are available on Hugging Face 🤗:
+
+| Variant | Checkpoint |
+|---|---|
+| SigLIP-SO400M + S2 (paper main config) | [waybarrios/MoDA-LLaVA-MoRE-8B-SigLIP-S2](https://huggingface.co/waybarrios/MoDA-LLaVA-MoRE-8B-SigLIP-S2) |
+| CLIP ViT-L/14-336 | [waybarrios/MoDA-LLaVA-MoRE-8B-CLIP](https://huggingface.co/waybarrios/MoDA-LLaVA-MoRE-8B-CLIP) |
+
+Load them with this codebase:
+
+```python
+from llava.model.builder import load_pretrained_model
+from llava.mm_utils import get_model_name_from_path
+
+model_path = "waybarrios/MoDA-LLaVA-MoRE-8B-SigLIP-S2"
+tokenizer, model, image_processor, context_len = load_pretrained_model(
+    model_path=model_path,
+    model_base=None,
+    model_name=get_model_name_from_path(model_path),
+)
+```
+
+Evaluation of all paper benchmarks uses [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval).
+
 ## Data
 
 Training uses the standard LLaVA v1.5 instruction-tuning mix: a single JSON annotation file (665K examples, `llava_v1_5_mix665k.json`) plus the corresponding image folders (COCO, GQA, OCR-VQA, TextVQA, VisualGenome, etc.), following the same layout as upstream LLaVA / LLaVA-MoRE. Point `DATA_PATH` at the JSON file and `IMAGE_FOLDER` at the root directory containing the image subfolders — see the [official LLaVA data instructions](https://github.com/haotian-liu/LLaVA#visual-instruction-tuning) for how to assemble this mix if you don't already have it.

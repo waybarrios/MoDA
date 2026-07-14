@@ -2,7 +2,7 @@
 
 Official repository for our ICML 2026 paper **"MoDA: Modulation Adapter for Fine-Grained Visual Understanding in Instructional MLLMs."**
 
-🌐 **Project page:** https://waybarrios.com/MoDA/ &nbsp;·&nbsp; 📄 **Paper:** https://icml.cc/virtual/2026/poster/62389 &nbsp;·&nbsp; 📝 **arXiv:** https://arxiv.org/abs/2506.01850
+🌐 **Project page:** https://waybarrios.com/MoDA/ &nbsp;·&nbsp; 📄 **Paper:** https://icml.cc/virtual/2026/poster/62389 &nbsp;·&nbsp; 📝 **arXiv:** https://arxiv.org/abs/2506.01850 &nbsp;·&nbsp; 🤗 **HF paper page:** https://huggingface.co/papers/2506.01850 &nbsp;·&nbsp; 🤗 **Models:** [MoDA collection](https://huggingface.co/models?other=arxiv:2506.01850)
 
 MoDA (**Mo**dulation **A**dapter) is a lightweight module that improves fine-grained visual grounding in Multimodal Large Language Models (MLLMs) through **instruction-guided, channel-wise modulation** of pre-aligned visual features. Unlike token-level methods such as Q-Former that perform additive feature selection, MoDA operates at the channel level via **multiplicative (Hadamard) modulation** on already-aligned features, giving fine-grained control over which embedding dimensions are relevant for each instruction — without modifying the underlying MLLM architecture and without additional supervision.
 
@@ -47,15 +47,28 @@ Evaluation spans three categories:
 - **Vision-Centric:** LLaVA-Wild, MM-Vet, MMStar, V\*Bench, CV-Bench
 - **Hallucination Detection:** POPE, MMVP
 
+## Model Zoo
+
+Pretrained MoDA checkpoints on Hugging Face 🤗:
+
+| Model | LLM | Vision encoder | Checkpoint |
+|---|---|---|---|
+| LLaVA-MoRE 8B + MoDA (SigLIP-S2) | LLaMA-3.1-8B-Instruct | SigLIP-SO400M + S2 (384/768/1152) | [MoDA-LLaVA-MoRE-8B-SigLIP-S2](https://huggingface.co/waybarrios/MoDA-LLaVA-MoRE-8B-SigLIP-S2) |
+| LLaVA-MoRE 8B + MoDA (CLIP) | LLaMA-3.1-8B-Instruct | CLIP ViT-L/14-336 | [MoDA-LLaVA-MoRE-8B-CLIP](https://huggingface.co/waybarrios/MoDA-LLaVA-MoRE-8B-CLIP) |
+| LLaVA-1.5 7B + MoDA | Vicuna-7B | CLIP ViT-L/14-336 | coming soon |
+| Qwen3-VL-2B + MoDA | Qwen3-2B | Qwen3-VL ViT | coming soon |
+
 ## Getting Started
 
-The codebase builds on the official [LLaVA](https://github.com/haotian-liu/LLaVA) / LLaVA-MoRE pipelines. Full training and evaluation code, configuration files, and pretrained checkpoints will be released in this repository.
+The codebase builds on the official [LLaVA](https://github.com/haotian-liu/LLaVA) / LLaVA-MoRE pipelines.
 
 ```bash
 git clone https://github.com/waybarrios/MoDA.git
 cd MoDA
-# environment setup and usage instructions coming soon
 ```
+
+- **LLaVA-MoRE + MoDA** — training, evaluation, and checkpoint usage: see [`llava-more/`](llava-more/README.md)
+- **Qwen3-VL + MoDA** — training, evaluation (lmms-eval), and model surgery scripts: see [`qwen3-vl/`](qwen3-vl/README.md)
 
 ## Citation
 
