@@ -15,7 +15,7 @@ class MoDAAdapter(nn.Module):
     """Instruction-guided channel-wise modulation of pre-aligned visual features."""
 
     def __init__(self, embedding_dim=4096, hidden_dim=1024, num_heads=16,
-                 num_layers=1, l1_lambda=1e-5, sparsity_lambda=1e-3):
+                 num_layers=2, l1_lambda=1e-5, sparsity_lambda=1e-3):
         super().__init__()
 
         self.decoder_layer = nn.TransformerDecoderLayer(
@@ -59,7 +59,7 @@ class MoDAAdapter(nn.Module):
 
 
 def build_moda(embedding_dim=4096, hidden_dim=1024, num_heads=16,
-               num_layers=1, l1_lambda=1e-5, sparsity_lambda=1e-3):
+               num_layers=2, l1_lambda=1e-5, sparsity_lambda=1e-3):
     return MoDAAdapter(
         embedding_dim=embedding_dim,
         hidden_dim=hidden_dim,
