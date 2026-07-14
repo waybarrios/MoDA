@@ -56,7 +56,7 @@ Pretrained MoDA checkpoints on Hugging Face 🤗:
 | LLaVA-MoRE 8B + MoDA (SigLIP-S2) | LLaMA-3.1-8B-Instruct | SigLIP-SO400M + S2 (384/768/1152) | [MoDA-LLaVA-MoRE-8B-SigLIP-S2](https://huggingface.co/waybarrios/MoDA-LLaVA-MoRE-8B-SigLIP-S2) |
 | LLaVA-MoRE 8B + MoDA (CLIP) | LLaMA-3.1-8B-Instruct | CLIP ViT-L/14-336 | [MoDA-LLaVA-MoRE-8B-CLIP](https://huggingface.co/waybarrios/MoDA-LLaVA-MoRE-8B-CLIP) |
 | LLaVA-1.5 7B + MoDA | Vicuna-7B | CLIP ViT-L/14-336 | coming soon |
-| Qwen3-VL-2B + MoDA | Qwen3-2B | Qwen3-VL ViT | coming soon |
+| Qwen3-VL-2B + MoDA | Qwen3-2B | Qwen3-VL ViT | [MoDA-Qwen3-VL-2B](https://huggingface.co/waybarrios/MoDA-Qwen3-VL-2B) |
 
 ## Getting Started
 

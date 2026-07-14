@@ -45,7 +45,7 @@ cd "${PROJECT_DIR}"
 # ---- Step 1: Prepare model directory (if not already done) ----
 if [ ! -f "qwen3_vl_8b_moda/config.json" ]; then
     echo ">>> Preparing 8B model directory..."
-    python scripts/prepare_model_dir.py --model-size 8b --num-layers 1
+    python scripts/prepare_model_dir.py --model-size 8b --num-layers 2
 fi
 
 # ---- Step 2: Convert dataset (if not already done) ----

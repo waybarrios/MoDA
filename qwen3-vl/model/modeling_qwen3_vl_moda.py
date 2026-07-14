@@ -63,7 +63,7 @@ class Qwen3VLMoDAConfig(Qwen3VLConfig):
         self,
         moda_hidden_dim: int = 512,
         moda_num_heads: int = 16,
-        moda_num_layers: int = 1,
+        moda_num_layers: int = 2,
         moda_dropout: float = 0.1,
         moda_sparsity_lambda: float = 1e-3,
         moda_enabled: bool = True,
@@ -97,7 +97,7 @@ class Qwen3VLModelWithMoDA(Qwen3VLModel):
             embedding_dim=embedding_dim,
             hidden_dim=getattr(config, "moda_hidden_dim", 512),
             num_heads=getattr(config, "moda_num_heads", 16),
-            num_layers=getattr(config, "moda_num_layers", 1),
+            num_layers=getattr(config, "moda_num_layers", 2),
             dropout=getattr(config, "moda_dropout", 0.1),
             sparsity_lambda=getattr(config, "moda_sparsity_lambda", 1e-3),
         )
